@@ -15,15 +15,14 @@ public class PageRankTask1 {
 
 		int[] path = randomSurfer(net, 10);
 		for (int i = 0; i < path.length; i++) {
-			System.out.println("L'utilisateur visite la page " + path[i]);
+			System.out.println("User visits page " + path[i]);
 		}
-		System.out.println("Visualisation graphique des visites : ");
+		System.out.println("Graphical visualisation of visits : ");
 		for (int i = 0; i < path.length; i++) {
 			System.out.println(visualizeVisit(path[i], net.length));
 		}
 	}
 
-	// OK(Hugo)
 	public static int[] randomSurfer(int[][] net, int steps) {
 		int[] randomPath = new int[steps];
 		randomPath[0] = 0;
@@ -33,14 +32,12 @@ public class PageRankTask1 {
 		return randomPath;
 	}
 
-	// OK(Hugo)
 	public static int getNextPage(int[][] net, int currentPage) {
 		int nextPage;
-		// Ceci permet d'obtenir le facteur de damping en utilisant un Double
-		// aleatoire
-		// Ici premiere solution , le surfer decide de cliquer sur un lien
+		// This permits to obtain the damping factor by using random Double
+		// First case, the user decides to click on a link
 		if (random.nextDouble() < 0.9) {
-			// ici on code le cas ou la page actuelle n'a aucun lien sortant
+			// Case where actual page has no link
 			if (net[currentPage].length == 0) {
 				nextPage = random.nextInt(net.length);
 			} else {
@@ -48,14 +45,12 @@ public class PageRankTask1 {
 						.nextInt(net[currentPage].length)];
 			}
 		} else {
-			// Ici deuxieme solution le surfer decide de taper lui meme une
-			// addresse url
+			// Second case, the user types an url
 			nextPage = random.nextInt(net.length);
 		}
 		return nextPage;
 	}
 
-	// OK(Hugo)
 	public static String visualizeVisit(int page, int totalPageNum) {
 		String visual = "";
 		for (int i = 0; i < totalPageNum; i++) {
